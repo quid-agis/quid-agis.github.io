@@ -16,7 +16,7 @@ params:
     - icon: twitter
       name: Twitter
       url: https://twitter.com/quid_agis_2713
-  subtitle: Minimal and Clean [blog theme for Hugo](https://github.com/athul/archie)
+  subtitle: Writing about Technology and my efforts to not break it.
   useCDN: no
 menu:
   main:
