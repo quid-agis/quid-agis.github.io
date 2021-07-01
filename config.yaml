@@ -32,3 +32,6 @@ menu:
     - name: Tags
       url: /tags
       weight: 4
+    - name: Contact
+      url: /contact
+      weight: 5
