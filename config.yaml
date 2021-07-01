@@ -1,6 +1,6 @@
 baseURL: https://quid-agis.netlify.app/
 languageCode: en-us
-title: qqqqArchie
+title: The Blog of Quid Agis
 theme: archie
 copyright: © Quid Agis 
 pygmentsstyle: monokai
@@ -12,13 +12,10 @@ params:
   social:
     - icon: github
       name: GitHub
-      url: https://github.com/athusdfsdfsdfl/archie
+      url: https://github.com/quid-agis
     - icon: twitter
       name: Twitter
-      url: https://github.com/athulcajay/
-    - icon: gitlab
-      name: GitLab
-      url: https://gitlab.com/athul/
+      url: https://twitter.com/quid_agis_2713
   subtitle: Minimal and Clean [blog theme for Hugo](https://github.com/athul/archie)
   useCDN: no
 menu:
