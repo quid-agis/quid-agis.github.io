@@ -10,7 +10,7 @@ title: About
 Quid is just a guy, who is trying to make his way in this ever-changing but fascinating world,
 using his varied skills, experiences and the knowledge of those who are smarter than him … which is many.
 
-Quid makes use of a variety of open source projects including:
+Quid makes use of a variety of open & closed source projects including:
 
 * Daml => https://daml.com/
 * Debian => https://www.debian.org/
