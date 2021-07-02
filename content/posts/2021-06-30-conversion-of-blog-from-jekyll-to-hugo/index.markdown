@@ -25,4 +25,4 @@ A quick Google (I know, it's a brand *not* a verb) shows the highest rate packag
 
 When the blog is sorted in terms of pages, style etc, I will get back to studying for my Daml Developer Associate exam.
 
-Update: After installing 'libxml2-dev' into my system, updating, then installing the CRan packages 'devtools` & `hadley/emo' I now have Emojis available in an R statistical object or RMarkdown 😃 😃 😃
+Update: After installing 'libxml2-dev' into my system, updating, then installing the CRan packages 'devtools' and 'hadley/emo' I now have Emojis available in an R statistical object or RMarkdown 😃 😃 😃
