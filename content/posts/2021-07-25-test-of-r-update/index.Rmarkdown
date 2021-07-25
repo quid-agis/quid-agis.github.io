@@ -1,5 +1,5 @@
 ---
-title: Test of Rstudio Blog Update
+title: Test of RStudio Blog Update
 author: Quid Agis
 date: '2021-07-25'
 slug: []
