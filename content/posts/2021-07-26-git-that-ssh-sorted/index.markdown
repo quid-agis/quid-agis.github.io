@@ -1,0 +1,113 @@
+---
+title: Git That SSH Sorted
+author: Quid Agis
+date: '2021-07-26'
+slug: []
+categories: []
+tags: [blog, git, ssh]
+draft: no
+---
+
+Yesterday while attempting to commit a new blog post, there was an issue. I could commit correctly and the post was staged but I was unable to push the change to Github.
+
+This was the relevant error message:
+```
+>>> /usr/bin/git push origin HEAD:refs/heads/main
+ssh: connect to host github.com port 7913: Connection timed out
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+```
+
+Great some weird SSH issue, after 24 days of laying fallow! There were two things that came to mind:
+
+1. The cutoff for Github to no longer accept password authentication, has passed
+2. The Port 7913 was exactly the same port assigned to the local OpenSSH_Server config.
+
+First, test the current Git config from the commandline:
+
+```r
+$ ssh -T git@github.com
+ssh: connect to host github.com port 7913: Connection timed out
+```
+Confirmed; Busted!
+
+Confirm the current OpenSSH_Server config port:
+
+```r
+$ cat /etc/ssh/sshd_config | grep 7913
+Port 7913
+```
+
+Confirmed. As I thought, the SSH client invoked using the Git command `push` is attempting to use my /../sshd_config. Why? I have no idea, will do some further research later/maybe never.
+
+Check that the Github account currently has a legitimate SSH_Keys attached, yes it does. However for the sake of all of this, I will revoke the current REMOTE SSH_Keys and delete the LOCAL SSH_Keys.
+
+Go to the Github account;
+
+> Menu > Profile > Settings > SSH and GPG keys:
+
+![Revoke SSH_Keys](Revoke_SSH_Key_Github_2021-07-26.png)
+
+Return to the local system and delete the current SSH_Keys:
+```r
+$ cd ~/.ssh
+$ rm -f id_rsa*
+```
+
+Go to RStudio and generate new SSH_Keys;
+> Menu > Tools > Global Options > Git/SVN > Create RSA key
+
+NB: In this instance I used a simple Passphrase
+
+![Create RSA Key](RStudio_Create_RSA_Key_2021-07-26.png)
+
+Next, install and use the GNU program [Xclip](https://guix.gnu.org/packages/xclip-0.13/) to copy&paste the new keys to Github.
+```r
+# Update the system
+$ sudo apt update
+# Install Xclip
+$ sudo apt install xclip
+# Go to the correct directory
+$ cd ~/.ssh
+# Select and copy the PUBLIC key to the Clipboard
+$ xclip -selection clipboard < ~/.ssh/id_rsa.pub
+```
+
+Next, return to the Github account, add the new SSH_Keys:
+
+> Menu > Profile > Settings > SSH and GPG keys:
+
+![Add new SSH_Keys](Add_New_SSH_Keys_to_Github_2021-07-26.png)
+
+Next, add a new file into the local system SSH:
+```r
+# Go to the correct directory
+$ cd ~/.ssh
+# Make the new file
+$ touch config
+# Edit 'config' file
+$ nano config
+
+--
+Host github.com
+  Hostname ssh.github.com
+  Port 443
+--
+# Save and exit 'config' file
+# Test the new SSH configuration
+$ ssh -T git@github.com
+# You will need to enter your Passphrase (If you created one)
+...
+Truncated
+...
+Hi quid-agis! You have successfully authenticated, but GitHub does not provide shell access.
+```
+
+Next, return to RStudio, Commit and Push, as per spec. At this stage, it should all be working correctly again. If not, carefully review the steps above and try again.
+
+> References:
+1. [Why does Github recommend HTTPS over SSH?](https://stackoverflow.com/questions/11041729/why-does-github-recommend-https-over-ssh/11041782#11041782)
+2. [Adding a new SSH_Key to your Github](https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+3. [The Git Book ver 2.0](https://git-scm.com/book/en/v2)

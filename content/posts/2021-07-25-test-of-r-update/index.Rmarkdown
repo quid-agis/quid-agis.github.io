@@ -4,7 +4,7 @@ author: Quid Agis
 date: '2021-07-25'
 slug: []
 categories: []
-tags: [blog rstudio test]
+tags: [blog, rstudio, test]
 draft: no
 ---
 
