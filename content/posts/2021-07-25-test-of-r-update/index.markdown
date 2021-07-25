@@ -1,0 +1,19 @@
+---
+title: Test of Rstudio Blog Update
+author: Quid Agis
+date: '2021-07-25'
+slug: []
+categories: []
+tags: [blog rstudio test]
+draft: no
+---
+
+I have not posted anything to this blog since the 30th of June, 2021. So much for regular posting, eh?
+
+So I have had some issues getting [Tidyverse](https://www.tidyverse.org/) to install onto this Ubuntu 20.04 LTS system. So much so, that I raised an Issue at the [Tidyverse Github](https://github.com/tidyverse). To wit, I was suggested by [Hadley Wickham](https://twitter.com/hadleywickham) to post directly to the [RStudio Community](https://community.rstudio.com/) forum, which I have done.
+
+Tidyverse fails to install correctly due to the [DTPLYR](https://github.com/tidyverse/dtplyr) package not installing correctly, so I have put forth a query [here](https://community.rstudio.com/t/tidyverse-installation-error-on-ubuntu-20-04-lts/110943) and hopefully some learned UseR will be able to help with fixing this issue.
+
+While waiting for a reply, on spec, I rm -f R-Base and then reinstalled it but there does not seem to be any change. I will do some more reading on R, Data.Frames and probably write another blog post as an aide-de-memoire on writing & publishing a blog post using this configuration that I have. Once that is done, I will contact the original author of the method I am using [Alison Presmanes Hill](https://twitter.com/apreshill) and ask if she would like to include it into her original post.
+
+Regardless of any current issues, I am thoroughly enjoying learning and using [R](https://www.r-project.org/).
