@@ -105,7 +105,7 @@ Truncated
 Hi quid-agis! You have successfully authenticated, but GitHub does not provide shell access.
 ```
 
-Next, return to RStudio, Commit and Push, as per spec. At this stage, it should all be working correctly again. If not, carefully review the steps above and try again.
+Next, return to RStudio, Commit and Push, as per spec. At this stage, it should all be working correctly again. If not, carefully review the steps above and try again. The links below were accessed in the remediation of this issue.
 
 > References:
 1. [Why does Github recommend HTTPS over SSH?](https://stackoverflow.com/questions/11041729/why-does-github-recommend-https-over-ssh/11041782#11041782)
