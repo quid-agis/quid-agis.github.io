@@ -1,0 +1,166 @@
+---
+title: Using R for Linux Sysadmin
+author: Quid Agis
+date: '2021-07-28'
+slug: []
+categories: [sysadmin]
+tags: [linux, r, sysadmin]
+draft: no
+---
+
+Now that it is done, it being R & RStudio etc having been successfully reinstalled onto this brand new `Ubuntu 21.04` system, I can get back to studying for the Daml Associate Developer exam, and learning the R Language.
+
+Referring to [A Fun intro to R](https://favstats.github.io/ds3_r_intro/#107), it might be a good chance to make a simple Data.Frame that shows the current reality of this new filesystem.
+
+When I install Linux now, regardless of which variant, I manually partition the disks, always. This is for two simple reasons; the first being it gives me the flexibility to place data in the system exactly where I want it, and secondly, it is good practice. You never know if or when you may need to manually partition a hard drive using GNU/Linux.
+
+Better to know and not need it, than not know and need it. My $0.02.
+
+My current setup uses a 1Tb SATA II HDD, which is designated /dev/sda by the disk controller, and has been split into a partition of almost 400Gb which has this Ubuntu install on it.
+
+The remainder of the disk was designated `Do not use this partition`, although I will split that into 2 even partitions and install another Ubuntu instance and probably a [Devuan](https://www.devuan.org/) instance.
+
+For this Ubuntu install, I have chosen to use the following partitions;
+
+* /boot
+* swap
+* /
+* /home
+* /usr
+* /usr/local
+* /var
+* /opt
+* /tmp
+
+This will easily and neatly sit in a Data.Frame, with the following headings;
+
+* Filesystem
+* Size
+* Used
+* Available
+* Use%
+* Mounted_on
+
+To capture the data for this Data.Frame is quite easy from the Linux Command Line Interface (CLI):
+
+```r
+# Change to the required directory
+$ cd Documents
+# Create the capture file
+$ touch df_h.txt
+# Capture the data using the '-h' for Human-Readable flag
+$ df -h > df_h.txt
+```
+
+Next, do some hands-on but inefficient data wrangling by deleting the space between the output and converting the `df_h.txt` file into a Text-based, Comma Separated Values (CSV) file:
+
+```r
+# Open the file and convert from:
+
+...
+Filesystem      Size  Used Avail Use% Mounted on
+tmpfs           1.6G  1.7M  1.6G   1% /run
+/dev/sda6       9.4G   50M  8.8G   1% /
+/dev/sda8        15G  5.4G  8.0G  41% /usr
+tmpfs           7.6G   19M  7.6G   1% /dev/shm
+tmpfs           5.0M  4.0K  5.0M   1% /run/lock
+tmpfs           4.0M     0  4.0M   0% /sys/fs/cgroup
+/dev/sda9       9.4G   37M  8.8G   1% /usr/local
+/dev/sda11       24G   45M   23G   1% /opt
+/dev/sda10       24G  2.4G   20G  11% /var
+/dev/sda12      9.4G  100M  8.8G   2% /tmp
+/dev/sda1       1.9G  156M  1.7G   9% /boot
+/dev/sda7       281G  1.7G  265G   1% /home
+tmpfs           1.6G  2.1M  1.6G   1% /run/user/1000
+/dev/sdc1       458G   62G  373G  15% /home/quid/Storage
+...
+
+To:
+
+...
+Filesystem,Size,Used,Avail,Use%,Mounted_on
+tmpfs,1.6G,1.7M,1.6G,1%,/run
+/dev/sda6,9.4G,50M,8.8G,1%,/
+/dev/sda8,15G,5.4G,8.0G,41%,/usr
+tmpfs,7.6G,19M,7.6G,1%,/dev/shm
+tmpfs,5.0M,4.0K,5.0M,1%,/run/lock
+tmpfs,4.0M,0,4.0M,0%,/sys/fs/cgroup
+/dev/sda9,9.4G,37M,8.8G,1%,/usr/local
+/dev/sda11,24G,45M,23G,1%,/opt
+/dev/sda10,24G,2.4G,20G,11%,/var
+/dev/sda12,9.4G,100M,8.8G,2%,/tmp
+/dev/sda1,1.9G,156M,1.7G,9%,/boot
+/dev/sda7,281G,1.7G,265G,1%,/home
+tmpfs,1.6G,2.1M,1.6G,1%,/run/user/1000
+/dev/sdc1,458G,62G,373G,15%,/home/quid/Storage
+...
+```
+
+Finally, make a new file to reflect the new format:
+
+```r
+$ cp -v df_h.txt df_h.csv
+$ ls
+df_h.csv  df_h.txt
+```
+
+Next, move the new file to the correct directory:
+
+```r
+$ cp -v df_h.csv /home/quid/Git/quid-agis.github.io/content/posts/2021-07-28-using-r-for-linux-sysadmin
+```
+
+Now, turn it into a Data.Frame:
+
+```r
+# Change to the correct directory
+$ cd /home/quid/Git/quid-agis.github.io/content/posts/2021-07-28-using-r-for-linux-sysadmin
+# Execute the R process
+$ R
+...
+Truncated
+...
+
+# Confirm the directory
+> getwd()
+[1] "/home/quid/Git/quid-agis.github.io/content/posts/2021-07-28-using-r-for-linux-sysadmin"
+```
+
+Next, import the file, and make an object:
+
+```r
+> fsSummary <- read.csv(file='df_h.csv',sep=',',header=T)
+```
+Finally, display the result:
+
+```r
+> fsSummary
+
+   Filesystem Size Used Avail Use.         Mounted_on
+1       tmpfs 1.6G 1.7M  1.6G   1%               /run
+2   /dev/sda6 9.4G  50M  8.8G   1%                  /
+3   /dev/sda8  15G 5.4G  8.0G  41%               /usr
+4       tmpfs 7.6G  19M  7.6G   1%           /dev/shm
+5       tmpfs 5.0M 4.0K  5.0M   1%          /run/lock
+6       tmpfs 4.0M    0  4.0M   0%     /sys/fs/cgroup
+7   /dev/sda9 9.4G  37M  8.8G   1%         /usr/local
+8  /dev/sda11  24G  45M   23G   1%               /opt
+9  /dev/sda10  24G 2.4G   20G  11%               /var
+10 /dev/sda12 9.4G 100M  8.8G   2%               /tmp
+11  /dev/sda1 1.9G 156M  1.7G   9%              /boot
+12  /dev/sda7 281G 1.7G  265G   1%              /home
+13      tmpfs 1.6G 2.1M  1.6G   1%     /run/user/1000
+14  /dev/sdc1 458G  62G  373G  15% /home/quid/Storage
+```
+
+This is the first *ever* Data Frame that I have created using real data. It is basic, static and text-based however it worked. I imagine that there is a significant array of customisations and options that can be applied to Data such as this. Personally I would be quite interested in getting this to work almost real-time, having the Filesystem update based on User/Application actions, then push this into some visible space.
+
+Having had a quick read of the RStudio's application [Shiny](https://shiny.rstudio.com/), I am confident that a Dashboard creation would be perfect for viewing changing Data. Excellent!
+
+> TODO:
+1. Research Left/Right alignment protocols for Data.Frames
+2. Research Sequential ordering protocols for Data.Frames
+
+> References:
+1. [Fun Intro Slide 108](https://favstats.github.io/ds3_r_intro/#108)
+2. [Cyclismo R Tutorial, Tables](https://www.cyclismo.org/tutorial/R/tables.html)
