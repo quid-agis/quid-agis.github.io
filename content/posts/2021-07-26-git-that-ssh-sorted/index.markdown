@@ -79,7 +79,7 @@ Next, return to the Github account, add the new SSH_Keys:
 
 > Menu > Profile > Settings > SSH and GPG keys:
 
-![Add new SSH_Keys](Add_New_SSH_Keys_to_Github_2021-07-26.png)
+![How to add new SSH keys][id3]
 
 Next, add a new file into the local system SSH:
 ```r
@@ -106,6 +106,8 @@ Hi quid-agis! You have successfully authenticated, but GitHub does not provide s
 ```
 
 Next, return to RStudio, Commit and Push, as per spec. At this stage, it should all be working correctly again. If not, carefully review the steps above and try again. The links below were accessed in the remediation of this issue.
+
+[id3]: Add_New_SSH_Keys_to_Github_2021-07-26.png "How to add a new SSH Key to your Github"
 
 > References:
 1. [Why does Github recommend HTTPS over SSH?](https://stackoverflow.com/questions/11041729/why-does-github-recommend-https-over-ssh/11041782#11041782)
