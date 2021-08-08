@@ -7,6 +7,6 @@ Personal website of Quid Agis
 * Design Body [X]
 * Design NavMenu []
 * Select Theme []
-* Locate backup copy of old Jekyll site
+* Locate backup copy of old Jekyll site [X]
 
 
