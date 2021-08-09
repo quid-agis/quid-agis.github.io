@@ -20,10 +20,9 @@ Please make sure you have the correct access rights
 and the repository exists.
 ```
 
-Great some weird SSH issue, after 24 days of laying fallow! There were two things that came to mind:
+Great some weird SSH issue, after 24 days of laying fallow! There was something that came to mind:
 
-1. The cutoff for Github to no longer accept password authentication, has passed
-2. The Port 7913 was exactly the same port assigned to the local OpenSSH_Server config.
+1. The Port 7913 was exactly the same port assigned to the local OpenSSH_Server config.
 
 First, test the current Git config from the commandline:
 
