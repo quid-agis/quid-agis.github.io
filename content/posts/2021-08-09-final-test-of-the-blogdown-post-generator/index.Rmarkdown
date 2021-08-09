@@ -5,7 +5,7 @@ date: '2021-08-09'
 slug: []
 categories: [sysadmin]
 tags: [blogdown, post, test]  
-draft: yes
+draft: no
 ---
 
 
