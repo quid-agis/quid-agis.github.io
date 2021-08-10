@@ -5,7 +5,7 @@ date: '2021-08-09'
 slug: []
 categories: [sysadmin]
 tags: [blogdown, generator, post]  
-draft: yes
+draft: no
 ---
 
 I have been using RStudio and R for about 6 weeks now. Initially I had installed R via the package manager in [Ubuntu][id01] for a very specific R package that I had discovered. That worked, however it seems that the install was missing something, and was functionally broken, in particular it could not, or would not install the [Tidyverse][id02] package.
