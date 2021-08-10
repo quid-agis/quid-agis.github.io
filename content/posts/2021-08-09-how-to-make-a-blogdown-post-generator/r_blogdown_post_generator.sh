@@ -60,7 +60,7 @@ _functioname ()
 #   get the file name
 
     printf  "\n"
-    read -p "# What is the post title (this is a new post) ? " _titleorigin
+    read -p "# What is the post title (This is a new post) ? " _titleorigin
 
     _titleorigin="${_titleorigin// /-}"
 
@@ -85,6 +85,7 @@ _functioname ()
     read -p "# What is tag 3 (word) ? " _tag3
 
 #   get the draft status
+
     printf  "\n"
     read -p "# Is this post a draft (yes | no) ? " _draft
 
