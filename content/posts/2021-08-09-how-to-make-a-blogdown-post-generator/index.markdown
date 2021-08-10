@@ -1,0 +1,126 @@
+---
+title: How To Make A Blogdown Post Generator
+author: Quid Agis
+date: '2021-08-09'  
+slug: []
+categories: [sysadmin]
+tags: [blogdown, generator, post]  
+draft: yes
+---
+
+I have been using RStudio and R for about 6 weeks now. Initially I had installed R via the package manager in [Ubuntu][id01] for a very specific R package that I had discovered. That worked, however it seems that the install was missing something, and was functionally broken, in particular it could not, or would not install the [Tidyverse][id02] package.
+
+Disappointing!
+
+Struggling on, but unaware of the real issue, I installed the [RStudio Desktop][id05] package. Still looking for a replacement for the Jekyll-on-Github blogging setup, I was lurking on Twitter, searching for 'r blog'.
+
+Which is how I found the tutorial written by [Alison Presmanes Hill][id03] which is titled [Up & running with blogdown in 2021][id04].
+
+I will not talk any further about that configuration other than it works, and is great! If you have any specific queries, please contact the author directly at the bottom of her blog post.
+
+This particular setup features the following components:
+* R
+* RStudio
+* Git
+* Github
+* Netlify
+
+I attempted to reinstall Tidyverse, but it was breaking on the `dtplyr` package, which ended up with my joining the [RStudio Community][id05]. After asking a question about the potential error, with no answer after 3 days, I did what you do when you are stuck with a new programming language issue ... wiped the hard drive and reinstalled a new Ubuntu (21.04). Then carefully following the instructions from RStudio and Tidyverse, suddenly it all magically worked!
+
+Back to the blog.
+
+Referring to [Up & running with blogdown in 2021][id04], the method to instantiate a new blog post is:
+
+> blogdown::new_post(title = "This is the title of the post", ext = '.Rmarkdown', subdir = "posts")
+
+Which produces a very basic, Blogdown post with the following features:
+* Blog post title
+* Date posted
+* Draft status
+
+Image of newly created blog post:
+![This is the newly created blog post][id21]
+
+Image of newly created blog directory:
+![This is the newly created blog post directory][id20]
+
+As you can see, the basic blog post is bereft of content, and it is not that difficult to write the RMarkdown needed to make this post more featured. However, why not build a better blog post from the beginning?
+
+Since starting with GNU/Linux in 2000, I have always looked for ways to make common tasks easier and faster.
+
+Why type out `sudo apt update && sudo apt upgrade` before installing a package?
+
+Instead, create an alias in your `~/.bash_aliases`:
+> alias aug='sudo apt update && sudo apt upgrade'
+
+To update and upgrade the system, you now type `aug` instead.
+
+With this in mind, I have spent probably 10 hours worth of time; building, testing and refining a Bash script to generate a new Blogdown post in RStudio, which  includes the following features:
+* 3 working hyperlink with correctly rendering TTTLE tags
+* 3 images with correctly rendering ALT_TEXT tags
+* A simple reference section with cited hyperlinks
+* 3 blog post subject tags
+* Current Draft status (Yes/No)
+* 6 hidden hyperlink reference tags
+* An End Of File tag (My enduring homage to Tron!)
+
+The Bash script is titled 'r_blogdown_post_generator.sh' and it is available by download or a Github repository:
+* Direct download [here][id06]
+* Github repository [here][id07]
+
+For a long time I have used the Bash `echo` command to place items into a Bash script but on advice of some learned people and a lot of [Stackoverflow][id08] posts, I am using the Bash `printf` command instead. It is more flexible, powerful and capable but is a little more fastidious with the syntax.
+
+Apart from that, the post generator is a Bash script, which uses the Readline function to take in simple user input, placing those answers into variables, making a directory, and a file, in the following manner:
+* r_blogdown_post_generator.sh is located in my ~/bin directory
+* Use `./r_blogdown_post_generator.sh` to execute it
+* Question: What year (YYYY) ?
+* Question: What month (MM) ?
+* Question: What day (DD) ?
+* Question: What is the post title (this is a new post) ?
+* Question: Who is the post author (Admin | Quid Agis) ?
+* Question: What is tag 1 (word) ?
+* Question: What is tag 2 (word) ?
+* Question: What is tag 3 (word) ?
+* Question: Is this post a draft (yes | no) ?
+* Create `index.Rmarkdown`
+* Import the Front Matter into `index.Rmarkdown`
+* Import the Body Matter into `index.Rmarkdown`
+* Create the new `blogdown_post` directory
+* Copy the placeholder image into the `blogdown_post` directory
+* Copy `index.Rmarkdown` into the `blogdown_post` directory
+* Delete `index.Rmarkdown` from the `~/bin` directory
+* Clear the screen
+
+Now, you should have a newly created `blogdown_post` directory, containing:
+* A placeholder image
+* A `index.markdown` file
+* An `index.Rmarkdown` file
+* Formatted in the correct `YYYY-MM-DD` format.
+
+Now you have some sort of basis to write a post, chop&change as you need to.
+
+The only tricky bits about the generator were encoding the hyperlink & image links, especially with the correct HTML ALT_TEXT and TITLE tags. In fact one of the drivers to write this generator was to allow the use of these two HTML tags for the Vision Impaired, after reading some posts by [Dr Amy Kavanagh][id09] on Twitter, in which she reminded content creators using HTML to include these tags.
+
+After some searching through the [RMarkdown documentation][id10], I found these two tags, and have chosen to include them by default, will include further related HTML tags in subsequent updates to the post generator.
+
+Have at it, if you would like to offer some suggestions, submit an Issue or Pull Request.
+
+References:
+* https://rmarkdown.rstudio.com/authoring_basics.html
+* https://alison.rbind.io/blog/2020-12-new-year-new-blogdown/
+* https://en.wikipedia.org/wiki/Bash_(Unix_shell)
+
+[id01]: http://ubuntu.com/ "This link leads to the Canonial Ubuntu website"
+[id02]: https://www.tidyverse.org/ "This link leads to the tidyverse page. Tidyverse is an opinionated collection of R packages designed for data science."
+[id03]: https://alison.rbind.io/about/ "This link leads to the R based blog of Alison Hill, Product Manager, R Studio dot com"
+[id04]: https://alison.rbind.io/blog/2020-12-new-year-new-blogdown/ "This leads to the tutorial that helps you configure a Blogdown-based R Studio, Github and Netlify blog"
+[id05]: https://community.rstudio.com/ "This link leads to the R Studio Community"
+[id06]: r_blogdown_post_generator.sh "This is the direct download link to the R Blogdown Post Generator Bash script"
+[id07]: https://github.com/quid-agis/scripting-notes/r_blogdown_post_generator.sh "This leads to the R Blogdown Post Generator Bash script located in the Scripting Notes repository"
+[id08]: https://stackoverflow.com/questions/tagged/bash "This link leads to the Stack Overflox Bash questions page"
+[id09]: https://twitter.com/BlondeHistorian "This link leads to the Twitter account of Doctor Amy Kavanagh, the United Kingdom"
+[id10]: https://rmarkdown.rstudio.com/authoring_basics.html "This website provides quick references to the most commonly used R Markdown syntax"
+[id20]: new_blog_post_directory_rstudio_2021-08-10.png "This shows the basic directory structure of the new blog post"
+[id21]: new_blog_post_web_view_2021-08-10.png "This shows the new blog post"
+
+# EOF
