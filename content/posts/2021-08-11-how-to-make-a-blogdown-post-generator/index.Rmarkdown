@@ -1,7 +1,7 @@
 ---
 title: How To Make A Blogdown Post Generator
 author: Quid Agis
-date: '2021-08-09'  
+date: '2021-08-11'  
 slug: []
 categories: [sysadmin]
 tags: [blogdown, generator, post]  
