@@ -1,10 +1,10 @@
 #!/bin/bash
 # Purpose:      Generate A Blank Blogdown Post
-#		with User Input for Front Matter
+#		        with User Input for Front Matter
 # Method:	Use a Bash-driven Template Generator
 #
 # Section_01:	Declare Function to Take User Input
-# Author:	HannhM; #Freenode
+# Author:       HannhM; #Freenode
 # Date:		Sat 10 Apr 2021 13:00:00 NZST
 #
 # Section_02:	Import Front Matter to Blogdown Post
