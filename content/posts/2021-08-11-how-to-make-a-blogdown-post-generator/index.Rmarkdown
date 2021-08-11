@@ -116,7 +116,7 @@ References:
 [id04]: https://alison.rbind.io/blog/2020-12-new-year-new-blogdown/ "This leads to the tutorial that helps you configure a Blogdown-based R Studio, Github and Netlify blog"
 [id05]: https://community.rstudio.com/ "This link leads to the R Studio Community"
 [id06]: r_blogdown_post_generator.sh "This is the direct download link to the R Blogdown Post Generator Bash script"
-[id07]: https://github.com/quid-agis/scripting-notes/r_blogdown_post_generator.sh "This leads to the R Blogdown Post Generator Bash script located in the Scripting Notes repository"
+[id07]: https://github.com/quid-agis/bash-script-notes/blob/main/r_blogdown_post_generator.sh "This leads to the R Blogdown Post Generator Bash script located in the Scripting Notes repository"
 [id08]: https://stackoverflow.com/questions/tagged/bash "This link leads to the Stack Overflox Bash questions page"
 [id09]: https://twitter.com/BlondeHistorian "This link leads to the Twitter account of Doctor Amy Kavanagh, the United Kingdom"
 [id10]: https://rmarkdown.rstudio.com/authoring_basics.html "This website provides quick references to the most commonly used R Markdown syntax"
